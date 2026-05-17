@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Guía Estratégica Máster: BO7 End Game - GUS GAMING ZONE</title>
+    <style>
+        /* Reset y Estilos Base */
+        *, *::before, *::after { box-sizing: border-box; }
+        body { margin: 0; padding: 0; background-color: #0d0f12; color: #e2e8f0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; }
+        
+        .container { max-width: 950px; margin: 40px auto; background-color: #141820; border: 1px solid #222d3d; border-radius: 12px; padding: 40px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+
+        .header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid #ff4655; padding-bottom: 30px; }
+        .logo-placeholder { margin-bottom: 15px; display: flex; justify-content: center; align-items: center; }
+        .header h1 { font-size: 32pt; color: #ffffff; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 3px; font-weight: 800; }
+        .header .subtitle { font-size: 14pt; color: #ff4655; text-transform: uppercase; letter-spacing: 4px; font-weight: 600; margin: 0; }
+
+        h2 { font-size: 18pt; color: #ffffff; margin-top: 40px; margin-bottom: 15px; border-left: 5px solid #ff4655; padding-left: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        h3 { font-size: 14pt; color: #ff4655; margin-top: 25px; margin-bottom: 15px; text-transform: uppercase; }
+        p { color: #b9c4d4; font-size: 11pt; margin-bottom: 20px; }
+        strong { color: #ffffff; }
+
+        ul, ol { margin-bottom: 25px; padding-left: 25px; }
+        li { margin-bottom: 10px; color: #b9c4d4; font-size: 11pt; }
+
+        /* SECCIÓN ACTOS (ERROR TÉCNICO) */
+        .act-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 25px 0; }
+        .act-card { background-color: #1a202c; border: 1px solid #222d3d; border-radius: 8px; padding: 20px; transition: border-color 0.3s ease, transform 0.3s ease; }
+        .act-card:hover { border-color: #00e676; transform: translateY(-4px); }
+        .act-card h3 { margin-top: 0; font-size: 13pt; color: #00e676; }
+        
+        /* Contenedor universal para imágenes single-clic (Actos y Boss) */
+        .single-lightbox-img { width: 100%; height: 200px; border-radius: 6px; overflow: hidden; margin-bottom: 15px; cursor: pointer; border: 1px solid #3d4d65; transition: transform 0.3s; position: relative; }
+        .single-lightbox-img::after { content: '🔍 AMPLIAR'; position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: #fff; font-size: 8pt; padding: 4px 8px; border-radius: 4px; border: 1px solid #00e676; opacity: 0; transition: opacity 0.3s; font-weight: bold; pointer-events: none;}
+        .single-lightbox-img:hover::after { opacity: 1; }
+        .single-lightbox-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .single-lightbox-img:hover img { transform: scale(1.05); }
+
+        /* REJILLA DE OPERADORES Y BOSS STEPS (MISMO ESTILO) */
+        .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin: 20px 0 30px 0; }
+        
+        .operator-card, .boss-step-card {
+            --accent-color: #222d3d;
+            background-color: #1a202c;
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease;
+        }
+
+        .operator-card:hover { transform: scale(1.05); border-color: #ff4655; z-index: 10; box-shadow: 0 10px 20px rgba(255, 70, 85, 0.2); }
+        .boss-step-card:hover { transform: scale(1.05); border-color: #00e676; z-index: 10; box-shadow: 0 10px 20px rgba(0, 230, 118, 0.1); }
+
+        .operator-img-box { position: relative; width: 100%; height: 180px; background-color: #0d0f12; overflow: hidden; border-bottom: 1px solid #222d3d; }
+        .operator-img-box img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.4s ease; }
+        
+        .operator-card .img-variant { position: absolute; top: 0; left: 0; opacity: 0; }
+        .operator-card:hover .img-variant { opacity: 1; }
+
+        .variation-count { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: 8pt; padding: 4px 8px; border-radius: 4px; border: 1px solid #ff4655; font-weight: bold; }
+        .boss-step-card .variation-count { border-color: #00e676; color: #00e676; }
+
+        .operator-content { padding: 15px; flex-grow: 1; }
+        .operator-name { font-size: 12pt; font-weight: bold; color: #fff; text-transform: uppercase; margin: 0 0 10px 0; }
+
+        /* Tablas Tácticas */
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 10.5pt; background-color: #1a202c; border-radius: 6px; overflow: hidden; }
+        th { background-color: #ff4655; color: #ffffff; font-weight: bold; text-align: left; padding: 14px; text-transform: uppercase; font-size: 10pt; letter-spacing: 0.5px; }
+        td { padding: 14px; border-bottom: 1px solid #222d3d; color: #d1dbe5; vertical-align: top; }
+        tr:nth-child(even) { background-color: #1d2433; }
+        
+        /* Destacados */
+        .alert-box { background-color: rgba(255, 70, 85, 0.1); border: 1px solid rgba(255, 70, 85, 0.3); border-left: 4px solid #ff4655; padding: 20px; border-radius: 6px; margin: 25px 0; }
+        .alert-box p { margin: 0; color: #e2e8f0; }
+        
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 9pt; font-weight: bold; text-transform: uppercase; margin-right: 5px; }
+        .badge-s { background-color: #ff1744; color: white; }
+        .badge-a { background-color: #2979ff; color: white; }
+        .badge-b { background-color: #78909c; color: white; }
+
+        /* LIGHTBOX TÁCTICO CON NAVEGACIÓN */
+        .lightbox-modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(13, 15, 18, 0.98); backdrop-filter: blur(8px); justify-content: center; align-items: center; flex-direction: column; }
+        .lightbox-modal.active { display: flex; }
+        .lightbox-content-wrapper { position: relative; display: flex; align-items: center; justify-content: center; width: 90%; height: 80%; }
+        .lightbox-content { max-width: 100%; max-height: 100%; border: 2px solid #ff4655; border-radius: 8px; box-shadow: 0 0 50px rgba(255, 70, 85, 0.3); }
+
+        /* Botones Navegación */
+        .nav-btn { position: absolute; background: rgba(255, 70, 85, 0.1); border: 2px solid #ff4655; color: #fff; font-size: 24pt; width: 60px; height: 60px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: 0.2s; }
+        .nav-btn:hover { background: #ff4655; transform: scale(1.1); }
+        .prev-btn { left: -80px; }
+        .next-btn { right: -80px; }
+
+        .lightbox-close { position: absolute; top: -50px; right: 0; color: #fff; font-size: 30pt; cursor: pointer; }
+        .lightbox-counter { margin-top: 20px; color: #ff4655; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* Redes Sociales */
+        .social-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px; margin: 40px 0; padding: 20px; background-color: #1a202c; border-radius: 8px; border: 1px solid #222d3d; }
+        .social-title { width: 100%; text-align: center; font-size: 11pt; font-weight: bold; text-transform: uppercase; color: #ffffff; margin-bottom: 5px; }
+        .social-link { padding: 10px 20px; border-radius: 6px; font-weight: bold; text-decoration: none; transition: 0.2s; color: #fff; text-transform: uppercase; font-size: 10pt; }
+        .social-link:hover { transform: translateY(-2px); }
+        .social-tiktok { background-color: #000; border: 1px solid #ff4655; }
+        .social-kick { background-color: #53fc18; color: #000; }
+        .social-twitch { background-color: #9146ff; }
+
+        .footer { text-align: center; font-size: 9pt; color: #718096; border-top: 1px solid #222d3d; padding-top: 20px; }
+        .footer-brand { color: #ff4655; font-weight: bold; text-transform: uppercase; }
+
+        @media (max-width: 768px) {
+            .Tier-grid { grid-template-columns: 1fr; }
+            .act-grid { grid-template-columns: 1fr; }
+            .nav-btn { width: 45px; height: 45px; font-size: 18pt; }
+            .prev-btn { left: -10px; }
+            .next-btn { right: -10px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="logo-placeholder">
+            <img src="logo.svg" alt="Gus Gaming Zone Logo" style="max-width: 150px; height: auto;">
+        </div>
+        <h1>Gus Gaming Zone</h1>
+        <div class="subtitle">Guía de Operadores • BO7 End Game</div>
+    </div>
+
+    <p>¡Qué lo dice todo, comunidad! Bienvenidos a la guía táctica definitiva para dominar el modo <strong>End Game de Black Ops 7</strong>. En este espacio analizamos a fondo el comportamiento, rasgos en común y el desglose de eficiencia de los <strong>26 aspectos de operadores</strong>. Todo el contenido está optimizado visualmente para que revienten las partidas en su PlayStation 5.</p>
+
+    <h2>1. Fundamentos Clave del Modo End Game</h2>
+    <p>Olvídense por completo de las mecánicas lineales del modo Zombies tradicional. El End Game en la ciudad de Avalon es un entorno PvE dinámico estructurado bajo tres pilares fundamentales:</p>
+    <ul>
+        <li><strong>Contratos y Objetivos:</strong> El despliegue inicial con trajes aéreos exige moverse rápido para capturar centros de mando e interceptar convoyes.</li>
+        <li><strong>Clasificación de Combate (CR):</strong> Cada baja, contrato y hackeo eleva el CR de tu cuenta en la partida, desbloqueando mejoras de rareza.</li>
+        <li><strong>Extracción (Exfil):</strong> Si el escuadrón cae antes de extraer en el helicóptero, todo el progreso y botín se pierde. Saber cuándo retirarse es la verdadera habilidad.</li>
+    </ul>
+
+    <h2>2. Ejecución de Contratos: Eventos de "Error Técnico"</h2>
+    <p>Para maximizar el farmeo de XP y loot, es vital saber aplicar los atributos de tus operadores en los eventos dinámicos de <strong>Error Técnico</strong> que ocurren en Avalon. Dale clic a las imágenes para ver en detalle los contratos en acción.</p>
+
+    <div class="act-grid">
+        <div class="act-card">
+            <h3>Acto 1: Fase de Infiltración (Override)</h3>
+            <div class="single-lightbox-img" data-images="acto1.png">
+                <img src="acto1.png" alt="Evento Error Técnico Acto 1">
+            </div>
+            <p>Durante la primera fase del Error Técnico, las terminales de seguridad entran en bloqueo restrictivo. Aquí es donde debes usar a operadores con el atributo <strong>Override</strong> (como Anderson, Grimm o Mason). Este rasgo les permite puentear el minijuego de hackeo, forzando la apertura de los sistemas al instante y evitando que las oleadas de infectados te acorralen mientras interactúas con las pantallas.</p>
+        </div>
+        
+        <div class="act-card">
+            <h3>Acto 2: Supervivencia de Recursos (Réplica)</h3>
+            <div class="single-lightbox-img" data-images="acto2.png">
+                <img src="acto2.png" alt="Evento Error Técnico Acto 2">
+            </div>
+            <p>En la segunda fase del evento, el servidor lanza una contramedida que corrompe los suministros del mapa. Los operadores con el atributo <strong>Réplica</strong> (como Vermaak, Zaveri o Jurado) brillan aquí. Al interactuar con los alijos justo antes de que el Error Técnico los bloquee, este atributo duplica las municiones, placas de blindaje y recursos curativos, asegurando que el equipo sobreviva hasta la zona de extracción.</p>
+        </div>
+    </div>
+
+    <h2>3. Clasificación por Misiones Comunes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Misión / Atributo</th>
+                <th style="width: 40%;">Operadores Disponibles</th>
+                <th style="width: 35%;">Aplicación Práctica en Avalon</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Override (*)</strong></td>
+                <td>Anderson, Grimm, Mason</td>
+                <td>Esencial para acelerar terminales en el Acto 1 de Error Técnico.</td>
+            </tr>
+            <tr>
+                <td><strong>Réplica (**)</strong></td>
+                <td>Zaveri, Vermaak, Jurado</td>
+                <td>Duplica cajas de suministros en el Acto 2 de Error Técnico.</td>
+            </tr>
+            <tr>
+                <td><strong>Cortafuegos</strong></td>
+                <td>Karma, Anderson, Wei Lin, Vermaak</td>
+                <td>Inmunidad y mitigación ante ataques de virus de drones enemigos.</td>
+            </tr>
+            <tr>
+                <td><strong>Sin Miedo</strong></td>
+                <td><em>Todos (Excepto Karma)</em></td>
+                <td>Resistencia pasiva contra pánico causado por el jefe Falkner.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4. Meta-Análisis de Operadores (Galería de Skins)</h2>
+    <p>Haz clic en cualquier operador para abrir su galería y visualizar todas sus variantes de equipamiento.</p>
+
+    <h3><span class="badge badge-s">Nivel S</span> Los Polivalentes</h3>
+    <div class="tier-grid">
+        <div class="operator-card" data-images="vermaak-replica.png,vermaak-cortafuegos.png,vermaak-sin-miedo.png">
+            <div class="operator-img-box">
+                <img src="vermaak-replica.png" alt="Vermaak">
+                <img src="vermaak-cortafuegos.png" class="img-variant">
+                <span class="variation-count">3 SKINS</span>
+            </div>
+            <div class="operator-content">
+                <div class="operator-name">Vermaak</div>
+                <p style="font-size: 10pt; margin: 0;">Equilibrado. Limpia zonas cerradas y resiste toxinas.</p>
+            </div>
+        </div>
+        
+        <div class="operator-card" data-images="anderson-override.png,anderson-cortafuegos.png,anderson-sin-miedo.png">
+            <div class="operator-img-box">
+                <img src="anderson-override.png" alt="Anderson">
+                <img src="anderson-cortafuegos.png" class="img-variant">
+                <span class="variation-count">3 SKINS</span>
+            </div>
+            <div class="operator-content">
+                <div class="operator-name">Anderson</div>
+                <p style="font-size: 10pt; margin: 0;">Control electrónico. Hackea torretas enemigas a distancia.</p>
+            </div>
+        </div>
+
+        <div class="operator-card" data-images="mason-desterrado.png,mason-override.png,mason-sin-miedo.png">
+            <div class="operator-img-box">
+                <img src="mason-desterrado.png" alt="Mason">
+                <img src="mason-override.png" class="img-variant">
+                <span class="variation-count">3 SKINS</span>
+            </div>
+            <div class="operator-content">
+                <div class="operator-name">Mason</div>
+                <p style="font-size: 10pt; margin: 0;">Supervivencia extrema. Ideal para lobos solitarios.</p>
+            </div>
+        </div>
+    </div>
+
+    <h3><span class="badge badge-a">Nivel A</span> Especialistas</h3>
+    <div class="tier-grid">
+        <div class="operator-card" data-images="50-50-impulsiva.png,50-50-sin-miedo.png">
+            <div class="operator-img-box"><img src="50-50-impulsiva.png"><img src="50-50-sin-miedo.png" class="img-variant"><span class="variation-count">2 SKINS</span></div>
+            <div class="operator-content"><div class="operator-name">50/50</div><p style="font-size: 10pt; margin: 0;">Estilo netamente ofensivo. Regenera placas rápido.</p></div>
+        </div>
+        <div class="operator-card" data-images="kagan-hendidora.png,kagan-sin-miedo.png">
+            <div class="operator-img-box"><img src="kagan-hendidora.png"><img src="kagan-sin-miedo.png" class="img-variant"><span class="variation-count">2 SKINS</span></div>
+            <div class="operator-content"><div class="operator-name">Kagan</div><p style="font-size: 10pt; margin: 0;">Destroza la coraza de los Brutos Pesados.</p></div>
+        </div>
+        <div class="operator-card" data-images="zaveri-replica.png,zaveri-sin-miedo.png">
+            <div class="operator-img-box"><img src="zaveri-replica.png"><img src="zaveri-sin-miedo.png" class="img-variant"><span class="variation-count">2 SKINS</span></div>
+            <div class="operator-content"><div class="operator-name">Zaveri</div><p style="font-size: 10pt; margin: 0;">Soporte táctico. Duplica cajas vitales de munición.</p></div>
+        </div>
+        <div class="operator-card" data-images="jurado-replica.png,jurado-sin-miedo.png">
+            <div class="operator-img-box"><img src="jurado-replica.png"><img src="jurado-sin-miedo.png" class="img-variant"><span class="variation-count">2 SKINS</span></div>
+            <div class="operator-content"><div class="operator-name">Jurado</div><p style="font-size: 10pt; margin: 0;">Defensa en área. Aguanta la línea bajo fuego.</p></div>
+        </div>
+        <div class="operator-card" data-images="grimm-override.png,grimm-sin-miedo.png">
+            <div class="operator-img-box"><img src="grimm-override.png"><img src="grimm-sin-miedo.png" class="img-variant"><span class="variation-count">2 SKINS</span></div>
+            <div class="operator-content"><div class="operator-name">Grimm</div><p style="font-size: 10pt; margin: 0;">Soporte técnico veloz para asegurar terminales.</p></div>
+        </div>
+        <div class="operator-card" data-images="falkner-cisma.png,falkner-sin-miedo.png">
+            <div class="operator-img-box"><img src="falkner-cisma.png"><img src="falkner-sin-miedo.png" class="img-variant"><span class="variation-count">2 SKINS</span></div>
+            <div class="operator-content"><div class="operator-name">Falkner</div><p style="font-size: 10pt; margin: 0;">Control de masas. Rompe hordas de infectados.</p></div>
+        </div>
+        <div class="operator-card" data-images="wei-lin-cortafuegos.png,wei-lin-sin-miedo.png">
+            <div class="operator-img-box"><img src="wei-lin-cortafuegos.png"><img src="wei-lin-sin-miedo.png" class="img-variant"><span class="variation-count">2 SKINS</span></div>
+            <div class="operator-content"><div class="operator-name">Wei Lin</div><p style="font-size: 10pt; margin: 0;">Inmunidad de red en contratos de datos.</p></div>
+        </div>
+    </div>
+
+    <div class="alert-box">
+        <p><strong>PRO-TIP DE GUS GAMING ZONE:</strong> Al configurar tu armamento en el menú previo en PS5, balancea las habilidades principales. Llevar al menos un <em>Carro de Emergencias</em> y una <em>Plataforma de Drones</em> marcará la diferencia.</p>
+    </div>
+
+    <h2>5. Guía de Caza: Jefe Dr. Falkner</h2>
+    <p>Para desbloquear la skin exclusiva "Sin Miedo", debes derrotar al jefe de zona, el <strong>Dr. Falkner</strong>. *Atención*: No es suficiente con matarlo; sigue estos pasos exactos para asegurar el desbloqueo.</p>
+
+    <div class="tier-grid">
+        <div class="boss-step-card single-lightbox-img" data-images="dr-falkner1.jpg">
+            <div class="operator-img-box">
+                <img src="dr-falkner1.jpg" alt="Combate Dr. Falkner">
+            </div>
+            <div class="operator-content">
+                <div class="operator-name">Paso 1: El Combate</div>
+                <p style="font-size: 10pt; margin: 0;">Requiere nivel 40+, CR 45+. Purga esporas en Protocol. En la fase de jefe, mantén verticalidad con el gancho y usa drones.</p>
+            </div>
+        </div>
+
+        <div class="boss-step-card single-lightbox-img" data-images="confirmar-baja.jpg">
+            <div class="operator-img-box">
+                <img src="confirmar-baja.jpg" alt="Confirmar Baja Falkner">
+                <span class="variation-count">CRÍTICO</span>
+            </div>
+            <div class="operator-content">
+                <div class="operator-name">Paso 2: Confirmar Baja</div>
+                <p style="font-size: 10pt; margin: 0;">Al caer Falkner, acércate obligatoriamente al cuerpo y mantén el botón de interacción para confirmar la baja.</p>
+            </div>
+        </div>
+
+        <div class="boss-step-card single-lightbox-img" data-images="cinematica.jpg">
+            <div class="operator-img-box">
+                <img src="cinematica.jpg" alt="Ver Cinemática Completa">
+                <span class="variation-count">NO SALTAR</span>
+            </div>
+            <div class="operator-content">
+                <div class="operator-name">Paso 3: Ver Cinemática</div>
+                <p style="font-size: 10pt; margin: 0;">Tras confirmar, se activará una cinemática de historia. *Debes verla completa* hasta el final para completar el desafío.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert-box" style="border-left-color: #ff1744; background-color: rgba(255, 23, 68, 0.1);">
+        <p><strong>⚠️ ADVERTENCIA DE GUS GAMING ZONE:</strong> Si omites confirmar la baja o saltas la cinemática final, el juego *no registrará* el desbloqueo del aspecto "Sin Miedo" para el operador seleccionado.</p>
+    </div>
+
+    <div class="social-container">
+        <div class="social-title">Sigue los Despliegues de Gus Gaming Zone</div>
+        <a href="https://www.tiktok.com/@gusgamingzone" target="_blank" class="social-link social-tiktok">TikTok</a>
+        <a href="https://kick.com/gusgamingzone" target="_blank" class="social-link social-kick">Kick Stream</a>
+        <a href="https://www.twitch.tv/gusgamingzone" target="_blank" class="social-link social-twitch">Twitch</a>
+    </div>
+
+    <div class="footer">
+        <p>Guía Táctica de Operadores BO7 End Game • Diseñada para la comunidad de <span class="footer-brand">Gus Gaming Zone</span></p>
+    </div>
+</div>
+
+<div id="lightbox" class="lightbox-modal">
+    <div class="lightbox-content-wrapper">
+        <span class="lightbox-close" id="close">&times;</span>
+        <button class="nav-btn prev-btn" id="prev">&lt;</button>
+        <img id="lightboxImg" class="lightbox-content" src="">
+        <button class="nav-btn next-btn" id="next">&gt;</button>
+    </div>
+    <div id="counter" class="lightbox-counter">1 / 1</div>
+</div>
+
+<script>
+    let currentGallery = [];
+    let currentIndex = 0;
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const counter = document.getElementById('counter');
+
+    // Seleccionar tarjetas de operadores, imágenes single-lightbox y las nuevas boss-step-cards
+    document.querySelectorAll('.operator-card, .single-lightbox-img, .boss-step-card').forEach(element => {
+        element.addEventListener('click', (e) => {
+            // Evitar que el clic en el botón de cerrar del modal active esto si está abierto
+            if (lightbox.classList.contains('active')) return;
+
+            // Obtenemos las imágenes desde el atributo data-images
+            const dataImgs = element.getAttribute('data-images');
+            if (dataImgs) {
+                const imgs = dataImgs.split(',');
+                currentGallery = imgs;
+                currentIndex = 0;
+                updateLightbox();
+                lightbox.classList.add('active');
+            }
+        });
+    });
+
+    function updateLightbox() {
+        lightboxImg.src = currentGallery[currentIndex];
+        counter.innerText = `${currentIndex + 1} / ${currentGallery.length}`;
+        
+        // Ocultar botones de navegación si solo hay 1 imagen
+        const showNav = currentGallery.length > 1 ? 'flex' : 'none';
+        document.getElementById('prev').style.display = showNav;
+        document.getElementById('next').style.display = showNav;
+    }
+
+    // Lógica botones navegación
+    function nextImg() {
+        currentIndex = (currentIndex + 1) % currentGallery.length;
+        updateLightbox();
+    }
+
+    function prevImg() {
+        currentIndex = (currentIndex - 1 + currentGallery.length) % currentGallery.length;
+        updateLightbox();
+    }
+
+    document.getElementById('next').addEventListener('click', (e) => { e.stopPropagation(); nextImg(); });
+    document.getElementById('prev').addEventListener('click', (e) => { e.stopPropagation(); prevImg(); });
+    document.getElementById('close').addEventListener('click', () => lightbox.classList.remove('active'));
+    
+    // Cerrar al hacer clic fuera
+    lightbox.addEventListener('click', (e) => { 
+        if(e.target === lightbox || e.target.id === 'lightboxImg-wrapper') {
+            lightbox.classList.remove('active'); 
+        }
+    });
+    
+    // Controles teclado
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (currentGallery.length > 1) {
+            if (e.key === "ArrowRight") nextImg();
+            if (e.key === "ArrowLeft") prevImg();
+        }
+        if (e.key === "Escape") lightbox.classList.remove('active');
+    });
+</script>
+
+</body>
+</html>
