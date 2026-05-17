@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Guía Estratégica Máster: BO7 End Game - GUS GAMING ZONE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Guía Estratégica Máster: BO7 End Game - GUS GAMING ZONE</title>
     <style>
         /* Reset y Estilos Base */
         *, *::before, *::after { box-sizing: border-box; }
@@ -12,6 +12,7 @@
 
         .header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid #ff4655; padding-bottom: 30px; }
         .logo-placeholder { margin-bottom: 15px; display: flex; justify-content: center; align-items: center; }
+        .logo-placeholder img, .logo-placeholder svg { max-width: 150px; height: auto; }
         .header h1 { font-size: 32pt; color: #ffffff; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 3px; font-weight: 800; }
         .header .subtitle { font-size: 14pt; color: #ff4655; text-transform: uppercase; letter-spacing: 4px; font-weight: 600; margin: 0; }
 
@@ -29,14 +30,14 @@
         .act-card:hover { border-color: #00e676; transform: translateY(-4px); }
         .act-card h3 { margin-top: 0; font-size: 13pt; color: #00e676; }
         
-        /* Contenedor universal para imágenes single-clic (Actos y Boss) */
+        /* Contenedor universal para imágenes single-clic */
         .single-lightbox-img { width: 100%; height: 200px; border-radius: 6px; overflow: hidden; margin-bottom: 15px; cursor: pointer; border: 1px solid #3d4d65; transition: transform 0.3s; position: relative; }
-        .single-lightbox-img::after { content: '🔍 AMPLIAR'; position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: #fff; font-size: 8pt; padding: 4px 8px; border-radius: 4px; border: 1px solid #00e676; opacity: 0; transition: opacity 0.3s; font-weight: bold; pointer-events: none;}
+        .single-lightbox-img::after { content: '🔍 AMPLIAR'; position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: #fff; font-size: 8pt; padding: 4px 8px; border-radius: 4px; border: 1px solid #00e676; opacity: 0; transition: opacity 0.3s; font-weight: bold; pointer-events: none;}
         .single-lightbox-img:hover::after { opacity: 1; }
         .single-lightbox-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
         .single-lightbox-img:hover img { transform: scale(1.05); }
 
-        /* REJILLA DE OPERADORES Y BOSS STEPS (MISMO ESTILO) */
+        /* REJILLA DE OPERADORES Y BOSS STEPS */
         .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin: 20px 0 30px 0; }
         
         .operator-card, .boss-step-card {
@@ -60,14 +61,15 @@
         .operator-card .img-variant { position: absolute; top: 0; left: 0; opacity: 0; }
         .operator-card:hover .img-variant { opacity: 1; }
 
-        .variation-count { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: 8pt; padding: 4px 8px; border-radius: 4px; border: 1px solid #ff4655; font-weight: bold; }
+        .variation-count { position: absolute; bottom: 8px; right: 8px; background: rgba(0,0,0,0.8); color: #fff; font-size: 8pt; padding: 4px 8px; border-radius: 4px; border: 1px solid #ff4655; font-weight: bold; }
         .boss-step-card .variation-count { border-color: #00e676; color: #00e676; }
 
         .operator-content { padding: 15px; flex-grow: 1; }
         .operator-name { font-size: 12pt; font-weight: bold; color: #fff; text-transform: uppercase; margin: 0 0 10px 0; }
 
-        /* Tablas Tácticas */
-        table { width: 100%; border-collapse: collapse; margin: 25px 0; font-size: 10.5pt; background-color: #1a202c; border-radius: 6px; overflow: hidden; }
+        /* Tablas Tácticas - Adaptadas para Móvil */
+        .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 25px 0; border-radius: 6px; border: 1px solid #222d3d; }
+        table { width: 100%; min-width: 600px; border-collapse: collapse; font-size: 10.5pt; background-color: #1a202c; }
         th { background-color: #ff4655; color: #ffffff; font-weight: bold; text-align: left; padding: 14px; text-transform: uppercase; font-size: 10pt; letter-spacing: 0.5px; }
         td { padding: 14px; border-bottom: 1px solid #222d3d; color: #d1dbe5; vertical-align: top; }
         tr:nth-child(even) { background-color: #1d2433; }
@@ -85,15 +87,15 @@
         .lightbox-modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(13, 15, 18, 0.98); backdrop-filter: blur(8px); justify-content: center; align-items: center; flex-direction: column; }
         .lightbox-modal.active { display: flex; }
         .lightbox-content-wrapper { position: relative; display: flex; align-items: center; justify-content: center; width: 90%; height: 80%; }
-        .lightbox-content { max-width: 100%; max-height: 100%; border: 2px solid #ff4655; border-radius: 8px; box-shadow: 0 0 50px rgba(255, 70, 85, 0.3); }
+        .lightbox-content { max-width: 100%; max-height: 100%; border: 2px solid #ff4655; border-radius: 8px; box-shadow: 0 0 50px rgba(255, 70, 85, 0.3); object-fit: contain; }
 
         /* Botones Navegación */
-        .nav-btn { position: absolute; background: rgba(255, 70, 85, 0.1); border: 2px solid #ff4655; color: #fff; font-size: 24pt; width: 60px; height: 60px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: 0.2s; }
+        .nav-btn { position: absolute; background: rgba(255, 70, 85, 0.15); border: 2px solid #ff4655; color: #fff; font-size: 24pt; width: 60px; height: 60px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: 0.2s; z-index: 10000; }
         .nav-btn:hover { background: #ff4655; transform: scale(1.1); }
         .prev-btn { left: -80px; }
         .next-btn { right: -80px; }
 
-        .lightbox-close { position: absolute; top: -50px; right: 0; color: #fff; font-size: 30pt; cursor: pointer; }
+        .lightbox-close { position: absolute; top: -50px; right: 0; color: #fff; font-size: 30pt; cursor: pointer; z-index: 10001; }
         .lightbox-counter { margin-top: 20px; color: #ff4655; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
 
         /* Redes Sociales */
@@ -108,12 +110,26 @@
         .footer { text-align: center; font-size: 9pt; color: #718096; border-top: 1px solid #222d3d; padding-top: 20px; }
         .footer-brand { color: #ff4655; font-weight: bold; text-transform: uppercase; }
 
+        /* ====== RESPONSIVO (TELÉFONOS Y TABLETS PEQUEÑAS) ====== */
         @media (max-width: 768px) {
-            .Tier-grid { grid-template-columns: 1fr; }
-            .act-grid { grid-template-columns: 1fr; }
-            .nav-btn { width: 45px; height: 45px; font-size: 18pt; }
-            .prev-btn { left: -10px; }
-            .next-btn { right: -10px; }
+            .container { margin: 15px; padding: 20px; width: auto; border-radius: 8px; }
+            .header h1 { font-size: 24pt; letter-spacing: 1px; }
+            .header .subtitle { font-size: 11pt; letter-spacing: 2px; }
+            h2 { font-size: 15pt; margin-top: 30px; }
+            
+            /* Asegurar que las grillas colapsen perfectamente en 1 columna */
+            .tier-grid, .act-grid { grid-template-columns: 1fr; gap: 15px; }
+            
+            /* Ajustes del Lightbox para que no se corten los botones */
+            .lightbox-content-wrapper { width: 100%; height: 75%; }
+            .nav-btn { width: 45px; height: 45px; font-size: 18pt; background: rgba(255, 70, 85, 0.7); }
+            /* Metemos las flechas dentro del marco de la foto para móviles */
+            .prev-btn { left: 10px; }
+            .next-btn { right: 10px; }
+            .lightbox-close { top: 15px; right: 20px; position: fixed; }
+            
+            .social-container { flex-direction: column; padding: 15px; }
+            .social-link { width: 100%; text-align: center; }
         }
     </style>
 </head>
@@ -147,7 +163,7 @@
             <div class="single-lightbox-img" data-images="acto1.png">
                 <img src="acto1.png" alt="Evento Error Técnico Acto 1">
             </div>
-            <p>Durante la primera fase del Error Técnico, las terminales de seguridad entran en bloqueo restrictivo. Aquí es donde debes usar a operadores con el atributo <strong>Override</strong> (como Anderson, Grimm o Mason). Este rasgo les permite puentear el minijuego de hackeo, forzando la apertura de los sistemas al instante y evitando que las oleadas de infectados te acorralen mientras interactúas con las pantallas.</p>
+            <p>Durante la primera fase del Error Técnico, las terminales de seguridad entran en bloqueo restrictivo. Aquí es donde debes usar a operadores con el atributo <strong>Override</strong> (como Anderson, Grimm o Mason). Este rasgo les permite puentear el minijuego de hackeo, forzando la apertura de los sistemas al instante.</p>
         </div>
         
         <div class="act-card">
@@ -155,42 +171,45 @@
             <div class="single-lightbox-img" data-images="acto2.png">
                 <img src="acto2.png" alt="Evento Error Técnico Acto 2">
             </div>
-            <p>En la segunda fase del evento, el servidor lanza una contramedida que corrompe los suministros del mapa. Los operadores con el atributo <strong>Réplica</strong> (como Vermaak, Zaveri o Jurado) brillan aquí. Al interactuar con los alijos justo antes de que el Error Técnico los bloquee, este atributo duplica las municiones, placas de blindaje y recursos curativos, asegurando que el equipo sobreviva hasta la zona de extracción.</p>
+            <p>En la segunda fase del evento, el servidor lanza una contramedida que corrompe los suministros del mapa. Los operadores con el atributo <strong>Réplica</strong> (como Vermaak, Zaveri o Jurado) brillan aquí. Al interactuar con los alijos, este atributo duplica las municiones, placas de blindaje y recursos curativos.</p>
         </div>
     </div>
 
     <h2>3. Clasificación por Misiones Comunes</h2>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 25%;">Misión / Atributo</th>
-                <th style="width: 40%;">Operadores Disponibles</th>
-                <th style="width: 35%;">Aplicación Práctica en Avalon</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>Override (*)</strong></td>
-                <td>Anderson, Grimm, Mason</td>
-                <td>Esencial para acelerar terminales en el Acto 1 de Error Técnico.</td>
-            </tr>
-            <tr>
-                <td><strong>Réplica (**)</strong></td>
-                <td>Zaveri, Vermaak, Jurado</td>
-                <td>Duplica cajas de suministros en el Acto 2 de Error Técnico.</td>
-            </tr>
-            <tr>
-                <td><strong>Cortafuegos</strong></td>
-                <td>Karma, Anderson, Wei Lin, Vermaak</td>
-                <td>Inmunidad y mitigación ante ataques de virus de drones enemigos.</td>
-            </tr>
-            <tr>
-                <td><strong>Sin Miedo</strong></td>
-                <td><em>Todos (Excepto Karma)</em></td>
-                <td>Resistencia pasiva contra pánico causado por el jefe Falkner.</td>
-            </tr>
-        </tbody>
-    </table>
+    
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Misión / Atributo</th>
+                    <th style="width: 40%;">Operadores Disponibles</th>
+                    <th style="width: 35%;">Aplicación Práctica en Avalon</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Override (*)</strong></td>
+                    <td>Anderson, Grimm, Mason</td>
+                    <td>Esencial para acelerar terminales en el Acto 1 de Error Técnico.</td>
+                </tr>
+                <tr>
+                    <td><strong>Réplica (**)</strong></td>
+                    <td>Zaveri, Vermaak, Jurado</td>
+                    <td>Duplica cajas de suministros en el Acto 2 de Error Técnico.</td>
+                </tr>
+                <tr>
+                    <td><strong>Cortafuegos</strong></td>
+                    <td>Karma, Anderson, Wei Lin, Vermaak</td>
+                    <td>Inmunidad y mitigación ante ataques de virus de drones enemigos.</td>
+                </tr>
+                <tr>
+                    <td><strong>Sin Miedo</strong></td>
+                    <td><em>Todos (Excepto Karma)</em></td>
+                    <td>Resistencia pasiva contra pánico causado por el jefe Falkner.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <h2>4. Meta-Análisis de Operadores (Galería de Skins)</h2>
     <p>Haz clic en cualquier operador para abrir su galería y visualizar todas sus variantes de equipamiento.</p>
@@ -270,33 +289,16 @@
     <p>Operadores situacionales. Su despliegue responde puramente al farmeo de su aspecto estético.</p>
     <div class="tier-grid">
         <div class="operator-card" data-images="karma-cortafuegos.png">
-            <div class="operator-img-box">
-                <img src="karma-cortafuegos.png" alt="Karma Cortafuegos">
-            </div>
-            <div class="operator-content">
-                <div class="operator-name">Karma</div>
-                <p style="font-size: 10pt; margin: 0;">Útil en contratos defensivos de datos, pero eclipsada por el Nivel S.</p>
-            </div>
+            <div class="operator-img-box"><img src="karma-cortafuegos.png" alt="Karma Cortafuegos"></div>
+            <div class="operator-content"><div class="operator-name">Karma</div><p style="font-size: 10pt; margin: 0;">Útil en contratos defensivos de datos, pero eclipsada por el Nivel S.</p></div>
         </div>
-
         <div class="operator-card" data-images="samuels-sin-miedo.png">
-            <div class="operator-img-box">
-                <img src="samuels-sin-miedo.png" alt="Samuels Sin Miedo">
-            </div>
-            <div class="operator-content">
-                <div class="operator-name">Samuels</div>
-                <p style="font-size: 10pt; margin: 0;">Cuenta con un solo rasgo pasivo común. Úsalo solo para coleccionismo.</p>
-            </div>
+            <div class="operator-img-box"><img src="samuels-sin-miedo.png" alt="Samuels Sin Miedo"></div>
+            <div class="operator-content"><div class="operator-name">Samuels</div><p style="font-size: 10pt; margin: 0;">Cuenta con un solo rasgo pasivo común. Úsalo solo para coleccionismo.</p></div>
         </div>
-
         <div class="operator-card" data-images="razor-sin-miedo.png">
-            <div class="operator-img-box">
-                <img src="razor-sin-miedo.png" alt="Razor Sin Miedo">
-            </div>
-            <div class="operator-content">
-                <div class="operator-name">Razor</div>
-                <p style="font-size: 10pt; margin: 0;">Igual que Samuels, uso enfocado 100% en el farmeo de esta skin.</p>
-            </div>
+            <div class="operator-img-box"><img src="razor-sin-miedo.png" alt="Razor Sin Miedo"></div>
+            <div class="operator-content"><div class="operator-name">Razor</div><p style="font-size: 10pt; margin: 0;">Igual que Samuels, uso enfocado 100% en el farmeo de esta skin.</p></div>
         </div>
     </div>
 
@@ -309,9 +311,7 @@
 
     <div class="tier-grid">
         <div class="boss-step-card single-lightbox-img" data-images="dr-falkner1.jpg">
-            <div class="operator-img-box">
-                <img src="dr-falkner1.jpg" alt="Combate Dr. Falkner">
-            </div>
+            <div class="operator-img-box"><img src="dr-falkner1.jpg" alt="Combate Dr. Falkner"></div>
             <div class="operator-content">
                 <div class="operator-name">Paso 1: El Combate</div>
                 <p style="font-size: 10pt; margin: 0;">Requiere nivel 40+, CR 45+. Purga esporas en Protocol. En la fase de jefe, mantén verticalidad con el gancho y usa drones.</p>
@@ -319,10 +319,7 @@
         </div>
 
         <div class="boss-step-card single-lightbox-img" data-images="confirmar-baja.jpg">
-            <div class="operator-img-box">
-                <img src="confirmar-baja.jpg" alt="Confirmar Baja Falkner">
-                <span class="variation-count">CRÍTICO</span>
-            </div>
+            <div class="operator-img-box"><img src="confirmar-baja.jpg" alt="Confirmar Baja Falkner"><span class="variation-count">CRÍTICO</span></div>
             <div class="operator-content">
                 <div class="operator-name">Paso 2: Confirmar Baja</div>
                 <p style="font-size: 10pt; margin: 0;">Al caer Falkner, acércate obligatoriamente al cuerpo y mantén el botón de interacción para confirmar la baja.</p>
@@ -330,10 +327,7 @@
         </div>
 
         <div class="boss-step-card single-lightbox-img" data-images="cinematica.jpg">
-            <div class="operator-img-box">
-                <img src="cinematica.jpg" alt="Ver Cinemática Completa">
-                <span class="variation-count">NO SALTAR</span>
-            </div>
+            <div class="operator-img-box"><img src="cinematica.jpg" alt="Ver Cinemática Completa"><span class="variation-count">NO SALTAR</span></div>
             <div class="operator-content">
                 <div class="operator-name">Paso 3: Ver Cinemática</div>
                 <p style="font-size: 10pt; margin: 0;">Tras confirmar, se activará una cinemática de historia. *Debes verla completa* hasta el final para completar el desafío.</p>
@@ -375,13 +369,10 @@
     const lightboxImg = document.getElementById('lightboxImg');
     const counter = document.getElementById('counter');
 
-    // Seleccionar tarjetas de operadores, imágenes single-lightbox y las nuevas boss-step-cards
     document.querySelectorAll('.operator-card, .single-lightbox-img, .boss-step-card').forEach(element => {
         element.addEventListener('click', (e) => {
-            // Evitar que el clic en el botón de cerrar del modal active esto si está abierto
             if (lightbox.classList.contains('active')) return;
 
-            // Obtenemos las imágenes desde el atributo data-images
             const dataImgs = element.getAttribute('data-images');
             if (dataImgs) {
                 const imgs = dataImgs.split(',');
@@ -397,13 +388,11 @@
         lightboxImg.src = currentGallery[currentIndex];
         counter.innerText = `${currentIndex + 1} / ${currentGallery.length}`;
         
-        // Ocultar botones de navegación si solo hay 1 imagen
         const showNav = currentGallery.length > 1 ? 'flex' : 'none';
         document.getElementById('prev').style.display = showNav;
         document.getElementById('next').style.display = showNav;
     }
 
-    // Lógica botones navegación
     function nextImg() {
         currentIndex = (currentIndex + 1) % currentGallery.length;
         updateLightbox();
@@ -418,14 +407,12 @@
     document.getElementById('prev').addEventListener('click', (e) => { e.stopPropagation(); prevImg(); });
     document.getElementById('close').addEventListener('click', () => lightbox.classList.remove('active'));
     
-    // Cerrar al hacer clic fuera
     lightbox.addEventListener('click', (e) => { 
         if(e.target === lightbox || e.target.id === 'lightboxImg-wrapper') {
             lightbox.classList.remove('active'); 
         }
     });
     
-    // Controles teclado
     document.addEventListener('keydown', (e) => {
         if (!lightbox.classList.contains('active')) return;
         if (currentGallery.length > 1) {
